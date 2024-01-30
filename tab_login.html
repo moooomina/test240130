@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탭_로그인_시험</title>
+    <style>
+        .tab_title a {text-decoration: none; color:#000;}
+        .tab_contents .tab_c {height:500px;}
+        .tab_contents .tab_c1 {background:lightyellow;}
+        .tab_contents .tab_c2 {background:lightcyan;}
+        .tab_contents .tab_c1 .error {color:#f00;}
+        .active {color:#f00 !important;}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="tab_title">
+            <a href="#" class="tab tab1">탭 제목1</a>
+            <a href="#" class="tab tab2">탭 제목2</a>
+        </div>
+        <div class="tab_contents">
+            <div class="tab_c tab_c1">
+                <h2>탭 내용 1</h2>
+                <form action="#">
+                    <input type="text" name="id" id="id" placeholder="아이디를 입력하세요">
+                    <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
+                    <p class="error"></p>
+                    <button type="button" id="login">로그인</button>
+                </form>
+            </div>
+            <div class="tab_c tab_c2">탭 내용2</div>
+        </div>
+    </main>
+    <script>
+        //탭 제목 클릭 시 활성화 JS
+        const tab_title = document.querySelectorAll('.tab_title > a')
+        const tab_c_all = document.querySelectorAll('.tab_contents .tab_c')
+        console.log(tab_title, tab_c_all)
+
+        //탭 숨기기 함수 생성
+        const tab_c_all_func = ()=> {for(let c of tab_c_all){c.style.display='none'}}
+        tab_c_all_func()
+        tab_c_all[0].style.display='block'
+
+        //초기값 활성화(active)
+        tab_title[0].parentElement.classList.add('active')
+
+        //초기 탭 숨기기
+        const tab_active_remove = ()=>{
+            for(let r of tab_title){r.parentElement.classList.remove('active')}
+        }
+
+        //탭 클릭시 클릭한 대상 보이기
+        tab_title.forEach((t,i)=>{
+            console.log(t,i)
+            t.addEventListener('click',()=>{
+                tab_active_remove()
+                t.parentElement.classList.add('active')
+                tab_c_all_func()
+                tab_c_all[i].style.display='block'
+            })
+        })
+    </script>
+</body>
+</html>
