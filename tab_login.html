@@ -61,6 +61,29 @@
                 tab_c_all[i].style.display='block'
             })
         })
+
+        //error 메세지 출력
+        //아이디와 비밀번호를 모두 입력하지 않고 로그인 버튼을 클릭 시 “아이디와 비밀번호를 입력하세요”
+        //아이디를 입력하고 비밀번호를 입력하지 않고 로그인 버튼을 클릭 시 “비밀번호를 입력하세요”
+        //아이디를 입력하지 않고 비밀번호를 입력하고 로그인 버튼을 클릭 시 “아이디를 입력하세요”
+        //아이디와 비밀번호를 모두 입력 하고 로그인 버튼 클릭 시 “로그인 성공하였습니다”라는 팝업 메세지가 출력되게 하세요.
+        const idInput = document.querySelector('#id');
+        const pwInput = document.querySelector('#pw');
+        const error = document.querySelector('.error');
+        const login = document.querySelector('#login');
+        console.log(idInput,pwInput,error,login);
+
+        login.addEventListener('click',()=>{
+            if(idInput.value == '' && pwInput.value == ''){
+                error.innerHTML = '아이디와 비밀번호를 입력하세요'
+            }else if(pwInput.value == ''){
+                error.innerHTML = '비밀번호를 입력하세요'
+            }else if(idInput.value == ''){
+                error.innerHTML = '아이디를 입력하세요'
+            }else{
+                alert('로그인 성공하였습니다')
+            }
+        })
     </script>
 </body>
 </html>
